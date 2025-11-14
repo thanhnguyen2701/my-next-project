@@ -1,27 +1,42 @@
 'use client';
 
-import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
-import { setUser } from "@/lib/redux/features/userSlice";
-import Hello from "@/components/Hello";
+// import { useAppDispatch, useAppSelector } from "@/lib/redux/hooks";
+// import { setUser } from "@/lib/redux/features/userSlice";
+import ExploreBtn from "@/components/ExploreBtn";
+import EventCard from "@/components/EventCard";
+import { events } from "@/lib/constants";
 
 const Home = () => {
-  const name = useAppSelector((s) => s.user.name);
-  const dispatch = useAppDispatch();
+  // const name = useAppSelector((s) => s.user.name);
+  // const dispatch = useAppDispatch();
 
-  console.log('What type of a component am I?')
   return (
-    <main>
-      <div className='text-5xl underline'>Welcome to Next.js</div>
-      <p>Current user: {name || "None"}</p>
+    <section>
+      {/* <p>Current user: {name || "None"}</p>
       <button
         onClick={() => dispatch(setUser("Thanh"))}
         className="px-3 py-2 bg-blue-500 text-white rounded"
       >
         Set User
-      </button>
+      </button> */}
 
-      <Hello/>
-    </main>
+      <h1 className="text-center">The Hub for Every Dev <br /> Event You Can't Miss</h1>
+      <p className="text-center mt-5">Hackathons, Meetups, and Conferences, All in One Place</p>
+
+      <ExploreBtn />
+
+      <div className="mt-20 space-y-7">
+        <h3>Featured Events</h3>
+
+        <ul className="events list-none">
+          {events.map((event) => (
+            <li key={event.title}>
+              <EventCard {...event} />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
   )
 }
 
